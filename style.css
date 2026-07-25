@@ -1,0 +1,155 @@
+/* ============================================================
+   Clean, minimal styling. Monochrome palette.
+   The tab bar sits at the top of every page.
+   Edit the tokens below to reskin everything at once.
+   ============================================================ */
+
+:root {
+  --bg:      #ffffff;
+  --ink:     #1a1a1a;
+  --muted:   #8a8a8a;
+  --line:    #e2e2e2;
+  --fill:    #1a1a1a;   /* active / hover tab fill */
+  --fill-tx: #ffffff;   /* text on filled tab */
+
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --wrap: 900px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+
+a { color: var(--ink); }
+img { max-width: 100%; display: block; }
+
+/* ---- tab bar ----------------------------------------------- */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 26px 24px;
+  max-width: var(--wrap);
+  margin: 0 auto;
+}
+.tabs a {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 8px 15px;              /* room inside each box */
+  background: #f4f4f4;            /* faint grey fill = reads as a tile */
+  border: 1px solid #cfcfcf;      /* darker border so the box shows */
+  border-radius: 6px;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+.tabs a:hover {
+  background: var(--fill);
+  color: var(--fill-tx);
+  border-color: var(--fill);
+}
+.tabs a.active {
+  background: var(--fill);
+  color: var(--fill-tx);
+  border-color: var(--fill);
+}
+
+/* ---- homepage: nothing but the tabs ------------------------ */
+.home .tabs { padding-top: 44px; }
+
+/* ---- section page header ----------------------------------- */
+.section-head {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 46px 24px 24px;
+}
+.section-head h1 {
+  font-weight: 600;
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+.section-head p.intro {
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* ---- content: galleries & entries -------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 20px 24px 100px;
+}
+.card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg);
+}
+.card .frame {
+  aspect-ratio: 4 / 3;
+  background: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.card .frame img,
+.card .frame iframe { width: 100%; height: 100%; object-fit: cover; border: 0; }
+.card .frame .placeholder {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--muted);
+  text-align: center;
+  padding: 14px;
+}
+.card .caption {
+  padding: 11px 13px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.entries {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 20px 24px 100px;
+}
+.entry { padding: 28px 0; border-bottom: 1px solid var(--line); }
+.entry h2 { font-weight: 600; font-size: 1.35rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+.entry .meta {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+.entry p { margin: 0 0 1em; }
+.entry .poem { white-space: pre-line; line-height: 1.9; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
